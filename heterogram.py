@@ -6,7 +6,7 @@ def is_unique_chars(string):
     return len(freq) == len(string)
 
 
-def heterograms_in_slowa(slowa):
+def find_heterograms(slowa, output_file_name):
     polish_heterograms_list = []
 
     for idx, slowo in enumerate(slowa):
@@ -15,58 +15,34 @@ def heterograms_in_slowa(slowa):
 
     polish_heterograms_list.sort(key=len, reverse=True)
 
-    heterograms_file = open("heterogramy.txt", mode="w", encoding="utf-8")
+    heterograms_file = open(output_file_name, mode="w", encoding="utf-8")
     for slowo in polish_heterograms_list:
         heterograms_file.write(slowo)
     heterograms_file.close()
 
-    longest_heterogram = polish_heterograms_list[0]
-    print('Najdłuższy heterogram wg słownika slowa.txt: ' + longest_heterogram)
-    print('Długość słowa wynosi: ' + str(len(longest_heterogram) - 1))
+    # longest_heterogram = polish_heterograms_list[0]
+    # print('Najdłuższy heterogram wg słownika slowa.txt: ' + longest_heterogram)
+    # print('Długość słowa wynosi: ' + str(len(longest_heterogram) - 1))
 
 
-# def heterograms_in_odmiany(odmiany):
-#     polish_heterograms_odmiany_list = []
-#
-#     for idx, slowo in enumerate(odmiany):
-#         if is_unique_chars(slowo):
-#             polish_heterograms_odmiany_list.append(slowo)
-#
-#     polish_heterograms_odmiany_list.sort(key=len, reverse=True)
-#
-#     heterograms_odmiany_file = open("heterogramy_odmiana.txt", mode="w", encoding="utf-8")
-#     for slowo in polish_heterograms_odmiany_list:
-#         heterograms_odmiany_file.write(slowo)
-#     heterograms_odmiany_file.close()
-#
-#     longest_heterogram_odmiany = polish_heterograms_odmiany_list[0]
-#     print('Najdłuższy heterogram wg słownika slowa.txt: ' + longest_heterogram_odmiany)
-#     print('Długość słowa wynosi: ' + str(len(longest_heterogram_odmiany) - 1))
+def separate_lines(file_to_separate):
+    slowa = []
+    for line in file_to_separate:
+        slowa.extend([word.strip() for word in line.split(',')])
 
-
-# def convert_odmiany(odmiany_to_convert):
-#     converted_odmiany = []
-#     for idx, slowo in enumerate(odmiany_to_convert):
-#         slowo.splitlines(True)
-#         converted_odmiany.append(slowo)
-#
-#     converted_odmiany_file = open("converted_odmiany.txt", mode="w", encoding="utf-8")
-#     for slowo in converted_odmiany:
-#         converted_odmiany_file.write(slowo)
-#     converted_odmiany_file.close()
-#
-#     return converted_odmiany
+    with open('converted_odmiany_test.txt', 'w', encoding='utf-8') as outfile:
+        for slowo in slowa:
+            outfile.write(slowo + '\n')
+    return slowa
 
 
 if __name__ == '__main__':
     slowa = open("slowa.txt", mode="r", encoding="utf-8")
-    heterograms_in_slowa(slowa)
+    # find_heterograms(slowa, "heterogramy.txt")
 
-    # odmiany = open("odmiany.txt", mode="r", encoding="utf-8")
-    # odmiany = convert_odmiany(odmiany)
-    # heterograms_in_odmiany(odmiany)
-
-
+    odmiany = open("slowa_odmiany_test.txt", mode="r", encoding="utf-8")
+    odmiany = separate_lines(odmiany)
+    # find_heterograms(odmiany, "heterogramy_odmiany.txt")
 
 # TODO: Add słowotwórstwo as future possibility
 # TODO: Fix converting - now it is removing lines and has to little words
