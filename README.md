@@ -6,7 +6,9 @@ This small project aims to identify the longest heterogram in the Polish languag
 ## Current Longest Heterogram
 Currently, the longest word found is:
 
-**uwspółrzędniającego**
+```
+uwspółrzędniającego
+```
 
 The word has 19 letters.
 
@@ -20,6 +22,8 @@ Ten mały projekt ma na celu zidentyfikowanie najdłuższego heterogramu w języ
 ## Najdłuższy Heterogram
 Obecnie najdłuższym znalezionym słowem jest:
 
-**uwspółrzędniającego**
+```
+uwspółrzędniającego
+```
 
 Słowo ma 19 liter.
