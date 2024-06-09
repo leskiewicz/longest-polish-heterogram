@@ -20,30 +20,41 @@ def find_heterograms(slowa, output_file_name):
         heterograms_file.write(slowo)
     heterograms_file.close()
 
-    # longest_heterogram = polish_heterograms_list[0]
-    # print('Najdłuższy heterogram wg słownika slowa.txt: ' + longest_heterogram)
-    # print('Długość słowa wynosi: ' + str(len(longest_heterogram) - 1))
+    return polish_heterograms_list
 
 
-def separate_lines(file_to_separate):
+def separate_lines(file_to_separate, output_file_name, create_file):
     slowa = []
     for line in file_to_separate:
-        slowa.extend([word.strip() for word in line.split(',')])
+        split_lines = line.split(",")
+        for word in split_lines:
+            stripped_word = word.strip()
+            stripped_word = stripped_word + '\n'
+            slowa.append(stripped_word)
 
-    with open('converted_odmiany_test.txt', 'w', encoding='utf-8') as outfile:
-        for slowo in slowa:
-            outfile.write(slowo + '\n')
+    if create_file:
+        with open(output_file_name, 'w', encoding='utf-8') as outfile:
+            for slowo in slowa:
+                outfile.write(slowo)
+
     return slowa
+
+
+def info(heterograms_list):
+    longest_heterogram = heterograms_list[0].replace('\n', '')
+    print('Najdłuższy heterogram w pliku: ' + longest_heterogram)
+    print('Długość słowa wynosi: ' + str(len(longest_heterogram)))
 
 
 if __name__ == '__main__':
     slowa = open("slowa.txt", mode="r", encoding="utf-8")
-    # find_heterograms(slowa, "heterogramy.txt")
+    heterogramy_bez_odmian = find_heterograms(slowa, "heterogramy.txt")
+    info(heterogramy_bez_odmian)
 
-    odmiany = open("slowa_odmiany_test.txt", mode="r", encoding="utf-8")
-    odmiany = separate_lines(odmiany)
-    # find_heterograms(odmiany, "heterogramy_odmiany.txt")
+    odmiany = separate_lines(open("slowa_odmiany.txt", mode="r", encoding="utf-8"), "converted_odmiany.txt", False)
+    # odmiany = open("converted_odmiany.txt", mode="r", encoding="utf-8")
+    heterogramy_odmiany = find_heterograms(odmiany, "heterogramy_odmiany.txt")
+    info(heterogramy_odmiany)
 
 # TODO: Add słowotwórstwo as future possibility
-# TODO: Fix converting - now it is removing lines and has to little words
-# TODO: Refactor this shitty code
+# TODO: Refactor this code
