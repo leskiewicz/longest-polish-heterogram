@@ -7,35 +7,31 @@ def is_unique_chars(string):
 
 
 def find_heterograms(slowa, output_file_name):
+    # polish_heterograms_list = [slowo for slowo in slowa if is_unique_chars(slowo)]
     polish_heterograms_list = []
 
-    for idx, slowo in enumerate(slowa):
+    for slowo in slowa:
         if is_unique_chars(slowo):
             polish_heterograms_list.append(slowo)
 
     polish_heterograms_list.sort(key=len, reverse=True)
 
-    heterograms_file = open(output_file_name, mode="w", encoding="utf-8")
-    for slowo in polish_heterograms_list:
-        heterograms_file.write(slowo)
-    heterograms_file.close()
+    with open(output_file_name, mode="w", encoding="utf-8") as heterograms_file:
+        heterograms_file.writelines(polish_heterograms_list)
 
     return polish_heterograms_list
 
 
 def separate_lines(file_to_separate, output_file_name, create_file):
+    # slowa = [word.strip() + '\n' for line in file_to_separate for word in line.split(",")]
     slowa = []
     for line in file_to_separate:
-        split_lines = line.split(",")
-        for word in split_lines:
-            stripped_word = word.strip()
-            stripped_word = stripped_word + '\n'
-            slowa.append(stripped_word)
+        for word in line.split(","):
+            slowa.append(word.strip() + '\n')
 
     if create_file:
         with open(output_file_name, 'w', encoding='utf-8') as outfile:
-            for slowo in slowa:
-                outfile.write(slowo)
+            outfile.writelines(slowa)
 
     return slowa
 

@@ -12,6 +12,9 @@ uwspółrzędniającego
 
 The word has 19 letters.
 
+## Sources
+The dictionaries used come from sjp.pl: [for games](https://sjp.pl/sl/growy/) and [with variations](https://sjp.pl/sl/odmiany/).
+
 ---
 
 # Najdłuższy Heterogram w Języku Polskim
@@ -27,3 +30,6 @@ uwspółrzędniającego
 ```
 
 Słowo ma 19 liter.
+
+## Źródła
+Użyte słowniki pochodzą z serwisu sjp.pl: [do gier](https://sjp.pl/sl/growy/) i [z odmianami](https://sjp.pl/sl/odmiany/).
